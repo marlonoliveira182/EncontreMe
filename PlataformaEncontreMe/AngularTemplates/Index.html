@@ -1,12 +1,21 @@
-﻿<div class="container" ng-controller="indexController">
+﻿<div class="container" style="padding-top:6%">
 
-    <div class="container">
-        <div class="jumbotron">
+    <div class="container" ng-controller="indexController" infinite-scroll="reddit.nextPage()" infinite-scroll-disabled="reddit.busy" infinite-scroll-distance="1" >
 
-            
-
+        <div ng-repeat="item in reddit.items">
+            <span class="score">{{item.score}}</span>
+            <span class="title">
+                <a ng-href="{{item.url}}">{{item.title}}</a>
+            </span>
+            <small>
+                by {{item.author}} -
+                <a ng-href="http://reddit.com{{item.permalink}}" >{{item.num_comments}} comments</a>
+            </small>
+            <div style="clear: both;"></div>
         </div>
-        <p>This is some text.</p>
-        <p>This is another text.</p>
+        <div ng-show="reddit.busy">Loading data...</div>
     </div>
 </div>
+
+
+

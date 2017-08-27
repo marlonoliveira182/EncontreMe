@@ -1,0 +1,147 @@
+﻿<!--Chave API Google Maps: AIzaSyAHMgbkEvkhYWP0AQUuxpwXlP4y7PGB5oM -->
+
+<div class="container" ng-controller="cadastroDesaparecidoController" >
+    <div class="container">
+
+
+
+        <h2 class="page-title">Cadastrar Pessoa Desaparecida</h2>
+        <!-- Nova Pessoa Desaparecida-->
+        <div class="row">
+            <div class="col-md-10">
+                <div class="panel panel-white">
+                    <div class="panel-body">
+
+
+
+                        <form novalidate name="formPessoa" role="form" class="ng-pristine ng-valid">
+                            <div class="form-group col-sm-10">
+                                <label for="formPessoa">Nome</label>
+                                <input type="text" class="form-control" name="refNome" placeholder="Nome" maxlength="100" required />
+
+
+                            </div>
+                            <div class="form-group col-sm-5">
+                                <label for="rg">RG</label>
+                                <input type="text" class="form-control" name="rg" mask="88888888" placeholder="RG" maxlength="9" required />
+                            </div>
+                            <div class="form-group col-sm-5">
+                                <label for="cpf">CPF</label>
+                                <input type="text" class="form-control" nome="cpf" mask="88888888888" placeholder="CPF" maxlength="11" required />
+                            </div>
+                            <div class="col-sm-12">
+                                <label class="control-label">Sexo</label>
+                                <div class="form-group">
+                                    <div class="col-sm-4 selectContainer">
+                                        <select class="form-control" name="sexo">
+                                            <option value="">Escolha a opção</option>
+                                            <option value="m">Masculino</option>
+                                            <option value="f">Feminino</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="form-group col-sm-6">
+                                <label for="endereco">Endereço</label>
+                                <input type="text" class="form-control" nome="endereco" placeholder="Endereço" maxlength="100" required />
+                            </div>
+
+                            <div class="form-group col-sm-2">
+                                <label for="numero">Número</label>
+                                <input type="text" class="form-control" nome="numero" placeholder="Número" maxlength="5" required />
+                            </div>
+
+                            <div class="form-group col-sm-2">
+                                <label for="complemento">Complemento</label>
+                                <input type="text" class="form-control" nome="complemento" placeholder="Complemento" maxlength="15" required />
+                            </div>
+
+                            <div class="form-group col-sm-8">
+                                <label for="complemento">Local onde a pessoa foi vista pela última vez</label>
+                                <input type="text" class="form-control" nome="local" placeholder="Última Localização" maxlength="150" required />
+                            </div>
+
+
+
+                            <div class="alert alert-danger text-center center-div" role="alert" ng-show="apiError">
+                                <b>API Error : </b>
+                                <span>{{ apiStatus }}</span>
+                            </div>
+
+                            <form name="searchForm" novalidate
+                                  ng-submit="search()">
+                                <div class="input-group">
+                                    <input name="place" type="text" class="form-control"
+                                           ng-model="searchPlace" required autofocus />
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary"
+                                                ng-disabled="searchForm.$invalid">
+                                            Search
+                                        </button>
+                                    </span>
+                                </div>
+                            </form>
+
+                            <div id="map"></div>
+
+                            <form name="resForm" class="form-horizontal" novalidate
+                                  ng-submit="send()">
+                                <div class="form-group">
+                                    <label for="resName" class="col-xs-2 control-label">Name</label>
+                                    <div class="col-xs-10">
+                                        <input name="resName" type="text" class="form-control"
+                                               ng-model="place.name" required />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="resLat" class="col-xs-2 control-label">Latitude</label>
+                                    <div class="col-xs-10">
+                                        <input name="resLat" type="number" class="form-control"
+                                               ng-model="place.lat" required />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="resLng" class="col-xs-2 control-label">Longitude</label>
+                                    <div class="col-xs-10">
+                                        <input name="resLng" type="number" class="form-control"
+                                               ng-model="place.lng" required />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-offset-2 col-xs-10">
+                                        <button class="btn btn-success"
+                                                ng-disabled="resForm.$invalid">
+                                            Confirm
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+
+                    
+
+
+
+                    <div class="center-div col-sm-5">
+                        <button class="btn btn-primary" type="submit">Salvar</button>
+                        <a href="#" class="btn btn-primary">Voltar</a>
+                    </div>
+
+
+
+                    </form>
+
+
+
+
+
+                </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

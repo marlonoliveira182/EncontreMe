@@ -1,34 +1,52 @@
-﻿angular.module('encontreMe', ['ngRoute', 'ngAnimate'])
-   .config(function ($routeProvider) {
-       $routeProvider
-           .when('/', {
-               templateUrl: '/AngularTemplates/Index.html',
-               controller: 'indexController'
-           });
-       $routeProvider
-           .when('/index', {
-               templateUrl: '/AngularTemplates/Index.html',
-               controller: 'indexController'
-           });
+﻿angular.module('encontreMe', ['ngRoute', 'ngAnimate', 'infinite-scroll', 'meusServicos'])
 
-       $routeProvider
-           .when('/painel', {
-               templateUrl: '/AngularTemplates/painel.html',
-               controller: 'painelController'
-           });
+    .config(function ($routeProvider) {
+        $routeProvider
+            .when('/', {
+                templateUrl: '/AngularTemplates/Index.html',
+                controller: 'indexController'
+            });
+        $routeProvider
+            .when('/index', {
+                templateUrl: '/AngularTemplates/Index.html',
+                controller: 'indexController'
+            });
 
-       $routeProvider
-           .when('/cadastro', {
-               templateUrl: '/AngularTemplates/cadastro.html',
-               controller: 'cadastroController'
-           });
+        $routeProvider
+            .when('/cadastroDesaparecido', {
+                templateUrl: '/AngularTemplates/cadastroDesaparecido.html',
+                controller: 'cadastroDesaparecidoController'
+            });
 
-       $routeProvider
-           .when('/teste', {
-               templateUrl: '/AngularTemplates/teste.html',
-               controller: 'testeController'
-           });
+        $routeProvider
+            .when('/cadastro', {
+                templateUrl: '/AngularTemplates/cadastro.html',
+                controller: 'cadastroController'
+            });
 
-       $routeProvider.otherwise({ redirectTo: '/index' });
-});
+        $routeProvider
+            .when('/teste', {
+                templateUrl: '/AngularTemplates/teste.html',
+                controller: 'testeController'
+            });
+
+        $routeProvider.otherwise({ redirectTo: '/index' });
+
+
+
+
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
 

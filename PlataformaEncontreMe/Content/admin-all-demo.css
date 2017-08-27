@@ -29471,4 +29471,11 @@ body .popover.left .arrow:after {
             left: auto;
             right: 24px
         }
+
+    #map {
+        height: 400px;
+        margin: 20px 0;
+        border-radius: 5px;
+        border: 1px solid silver;
+    }
 }

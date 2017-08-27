@@ -158,8 +158,7 @@
   <ItemGroup>
     <Content Include="AngularTemplates\cadastro.html" />
     <Content Include="AngularTemplates\Index.html" />
-    <Content Include="AngularTemplates\painel.html" />
-    <Content Include="AngularTemplates\teste.html" />
+    <Content Include="AngularTemplates\cadastroDesaparecido.html" />
     <Content Include="Content\admin-all-demo.css" />
     <Content Include="Content\admin-all-demo.js" />
     <Content Include="Content\bootstrap.css" />
@@ -167,8 +166,7 @@
     <Content Include="Content\js-core.js" />
     <Content Include="Content\js\Controllers\cadastroController.js" />
     <Content Include="Content\js\Controllers\indexController.js" />
-    <Content Include="Content\js\Controllers\painelController.js" />
-    <Content Include="Content\js\Controllers\testeController.js" />
+    <Content Include="Content\js\Controllers\cadastroDesaparecidoController.js" />
     <Content Include="Content\js\Modulos\main.js" />
     <Content Include="Content\js\Servicos\meusServicos.js" />
     <Content Include="Content\page-animations.css" />
@@ -189,6 +187,8 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\ng-infinite-scroll.js" />
+    <Content Include="Scripts\ng-infinite-scroll.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Web.config" />

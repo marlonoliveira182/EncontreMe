@@ -1,4 +1,5 @@
-﻿function progress(a, b) {
+﻿
+function progress(a, b) {
     var c = a * b.width() / 100;
     b.find(".progressbar-value").animate({
         width: c
