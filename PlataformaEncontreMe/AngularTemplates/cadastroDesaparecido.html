@@ -3,36 +3,36 @@
 <div class="container" ng-controller="cadastroDesaparecidoController" >
     <div class="container">
 
-
-
         <h2 class="page-title">Cadastrar Pessoa Desaparecida</h2>
+
+    
         <!-- Nova Pessoa Desaparecida-->
         <div class="row">
-            <div class="col-md-10">
+            <div class="col-md-6">
                 <div class="panel panel-white">
                     <div class="panel-body">
 
 
 
                         <form novalidate name="formPessoa" role="form" class="ng-pristine ng-valid">
-                            <div class="form-group col-sm-10">
+                            <div class="form-group">
                                 <label for="formPessoa">Nome</label>
                                 <input type="text" class="form-control" name="refNome" placeholder="Nome" maxlength="100" required />
 
 
                             </div>
-                            <div class="form-group col-sm-5">
+                            <div class="form-group">
                                 <label for="rg">RG</label>
                                 <input type="text" class="form-control" name="rg" mask="88888888" placeholder="RG" maxlength="9" required />
                             </div>
-                            <div class="form-group col-sm-5">
+                            <div class="form-group">
                                 <label for="cpf">CPF</label>
                                 <input type="text" class="form-control" nome="cpf" mask="88888888888" placeholder="CPF" maxlength="11" required />
                             </div>
-                            <div class="col-sm-12">
+                            <div class="form-group">
                                 <label class="control-label">Sexo</label>
                                 <div class="form-group">
-                                    <div class="col-sm-4 selectContainer">
+                                    <div class="selectContainer">
                                         <select class="form-control" name="sexo">
                                             <option value="">Escolha a opção</option>
                                             <option value="m">Masculino</option>
@@ -45,22 +45,22 @@
 
 
 
-                            <div class="form-group col-sm-6">
+                            <div class="form-group">
                                 <label for="endereco">Endereço</label>
                                 <input type="text" class="form-control" nome="endereco" placeholder="Endereço" maxlength="100" required />
                             </div>
 
-                            <div class="form-group col-sm-2">
+                            <div class="form-group">
                                 <label for="numero">Número</label>
                                 <input type="text" class="form-control" nome="numero" placeholder="Número" maxlength="5" required />
                             </div>
 
-                            <div class="form-group col-sm-2">
+                            <div class="form-group">
                                 <label for="complemento">Complemento</label>
                                 <input type="text" class="form-control" nome="complemento" placeholder="Complemento" maxlength="15" required />
                             </div>
 
-                            <div class="form-group col-sm-8">
+                            <div class="form-group">
                                 <label for="complemento">Local onde a pessoa foi vista pela última vez</label>
                                 <input type="text" class="form-control" nome="local" placeholder="Última Localização" maxlength="150" required />
                             </div>
@@ -125,7 +125,7 @@
 
 
 
-                    <div class="center-div col-sm-5">
+                    <div class="center-div col-sm-3">
                         <button class="btn btn-primary" type="submit">Salvar</button>
                         <a href="#" class="btn btn-primary">Voltar</a>
                     </div>

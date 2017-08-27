@@ -24,12 +24,6 @@
                 controller: 'cadastroController'
             });
 
-        $routeProvider
-            .when('/teste', {
-                templateUrl: '/AngularTemplates/teste.html',
-                controller: 'testeController'
-            });
-
         $routeProvider.otherwise({ redirectTo: '/index' });
 
 

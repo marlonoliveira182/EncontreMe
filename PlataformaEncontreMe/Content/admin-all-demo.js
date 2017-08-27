@@ -8,6 +8,7 @@ function progress(a, b) {
 
 function body_sizer() {
     if ($("body").hasClass("fixed-sidebar")) {
+
         var a = $(window).height(),
             b = $("#page-header").height(),
             c = a - b;
