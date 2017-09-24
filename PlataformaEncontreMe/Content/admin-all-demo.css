@@ -32,6 +32,34 @@ body {
     margin-left: 15px !important;
     margin-top: 15px !important;
 }
+
+.thumb-xs .status,
+.thumb-sm .status,
+.thumb-lg .status,
+.thumb-xlg .status,
+.thumb .status {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 0.7em;
+    height: 0.7em;
+    border: 0.15em solid white;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+
+    .thumb-xs .status.status-bottom,
+    .thumb-sm .status.status-bottom,
+    .thumb-lg .status.status-bottom,
+    .thumb-xlg .status.status-bottom,
+    .thumb .status.status-bottom {
+        top: auto;
+        left: auto;
+        bottom: 0;
+        right: 0;
+    }
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
     display: block
 }
@@ -1351,7 +1379,7 @@ img {
 
 .carousel-inner > .item > a > img, .carousel-inner > .item > img, .img-responsive, .thumbnail a > img, .thumbnail > img {
     display: block;
-    max-width: 100%;
+    max-width: 60%;
     height: auto
 }
 
@@ -15644,7 +15672,7 @@ textarea.textarea-lg {
 .carousel-inner > .item > a > img, .carousel-inner > .item > img, .img-responsive {
     display: block;
     width: 100%;
-    max-width: 100%;
+    max-width: 40%;
     height: auto
 }
 

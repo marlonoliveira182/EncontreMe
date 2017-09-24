@@ -169,6 +169,7 @@
     <Content Include="Content\js\Controllers\cadastroController.js" />
     <Content Include="Content\js\Controllers\indexController.js" />
     <Content Include="Content\js\Controllers\cadastroDesaparecidoController.js" />
+    <Content Include="Content\js\Controllers\perfilController.js" />
     <Content Include="Content\js\Modulos\main.js" />
     <Content Include="Content\js\Servicos\meusServicos.js" />
     <Content Include="Content\page-animations.css" />

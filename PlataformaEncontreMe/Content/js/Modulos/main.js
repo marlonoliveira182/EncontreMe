@@ -22,7 +22,7 @@
         $routeProvider
             .when('/perfil', {
                 templateUrl: '/AngularTemplates/Perfil.html',
-                controller: 'cadastroDesaparecidoController'
+                controller: 'perfilController'
             });
 
         $routeProvider.otherwise({ redirectTo: '/index' });
