@@ -11,9 +11,27 @@ html {
 }
 
 body {
-    margin: 0
+    margin: 0;
+    background-color: #e9ebee !important;
 }
 
+
+.panel-white {
+    background-color: #fff !important;
+}
+
+.img-post {
+    height: 480px !important;
+    width: 400px !important;
+    padding-top: 20px;
+    border-radius: 13px;
+}
+.user-account-img img {
+    border-radius: 50px;
+    float: left;
+    margin-left: 15px !important;
+    margin-top: 15px !important;
+}
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
     display: block
 }
@@ -28282,7 +28300,7 @@ ul.todo-box {
 .user-account-btn img {
     border-radius: 50px;
     float: left;
-    margin-right: 5px
+    margin-right: 5px;
 }
 
 #header-nav-right {
@@ -29369,6 +29387,22 @@ body .popover.left .arrow:after {
     }
 }
 
+@media only screen and (max-width:835px) {
+    .fixed-sidebar #page-header {
+        padding-left: 2px;
+    }
+
+    admin-all-demo.css:28653 .fixed-header #page-header {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 170;
+    }
+
+    .padding-container{
+        padding-top: 4% !important;
+    }
+}
 @media only screen and (max-width:760px) {
     #cloud-btn, #header-nav-right #fullscreen-btn {
         display: none

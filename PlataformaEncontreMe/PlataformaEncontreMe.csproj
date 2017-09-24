@@ -159,6 +159,8 @@
     <Content Include="AngularTemplates\cadastro.html" />
     <Content Include="AngularTemplates\Index.html" />
     <Content Include="AngularTemplates\cadastroDesaparecido.html" />
+    <Content Include="AngularTemplates\Notificacoes.html" />
+    <Content Include="AngularTemplates\Perfil.html" />
     <Content Include="Content\admin-all-demo.css" />
     <Content Include="Content\admin-all-demo.js" />
     <Content Include="Content\bootstrap.css" />
@@ -173,7 +175,12 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="img\Bruno.jpg" />
+    <Content Include="img\Evaldo_Raksa.jpg" />
+    <Content Include="img\retrato.jpg" />
     <Content Include="Scripts\angular-animate.js" />
+    <Content Include="Scripts\angular-resource.js" />
+    <Content Include="Scripts\angular-resource.min.js" />
     <Content Include="Scripts\angular-route.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -189,6 +196,8 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\ng-infinite-scroll.js" />
     <Content Include="Scripts\ng-infinite-scroll.min.js" />
+    <Content Include="Scripts\ngMask.js" />
+    <Content Include="Scripts\ngMask.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Web.config" />

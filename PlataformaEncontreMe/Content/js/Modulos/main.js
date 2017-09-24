@@ -1,11 +1,6 @@
-﻿angular.module('encontreMe', ['ngRoute', 'ngAnimate', 'infinite-scroll', 'meusServicos'])
+﻿angular.module('encontreMe', ['ngRoute', 'ngAnimate', 'infinite-scroll', 'meusServicos', 'ngMask','ngResource'])
 
     .config(function ($routeProvider) {
-        $routeProvider
-            .when('/', {
-                templateUrl: '/AngularTemplates/Index.html',
-                controller: 'indexController'
-            });
         $routeProvider
             .when('/index', {
                 templateUrl: '/AngularTemplates/Index.html',
@@ -25,10 +20,6 @@
             });
 
         $routeProvider.otherwise({ redirectTo: '/index' });
-
-
-
-
     });
 
 

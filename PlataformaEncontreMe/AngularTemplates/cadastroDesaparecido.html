@@ -1,14 +1,14 @@
 ﻿<!--Chave API Google Maps: AIzaSyAHMgbkEvkhYWP0AQUuxpwXlP4y7PGB5oM -->
 
-<div class="container" ng-controller="cadastroDesaparecidoController" >
+<div class="container" ng-controller="cadastroDesaparecidoController" style="margin-right: 0px !important; padding-right: 0px !important; padding-left: 180.156px !important; padding-top: 8% !important;">
     <div class="container">
 
         <h2 class="page-title">Cadastrar Pessoa Desaparecida</h2>
 
-    
+
         <!-- Nova Pessoa Desaparecida-->
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="panel panel-white">
                     <div class="panel-body">
 
@@ -18,16 +18,14 @@
                             <div class="form-group">
                                 <label for="formPessoa">Nome</label>
                                 <input type="text" class="form-control" name="refNome" placeholder="Nome" maxlength="100" required />
-
-
                             </div>
                             <div class="form-group">
                                 <label for="rg">RG</label>
-                                <input type="text" class="form-control" name="rg" mask="88888888" placeholder="RG" maxlength="9" required />
+                                <input type="text" class="form-control" name="rg" ng-model="rg1" mask="99.999.999-9" clean="true" placeholder="RG" maxlength="14" required />
                             </div>
                             <div class="form-group">
                                 <label for="cpf">CPF</label>
-                                <input type="text" class="form-control" nome="cpf" mask="88888888888" placeholder="CPF" maxlength="11" required />
+                                <input type="text" class="form-control" nome="cpf" ng-model="cpf1" mask="999.999.999-99" clean="true" placeholder="CPF" maxlength="14" required />
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Sexo</label>
@@ -42,8 +40,6 @@
                                 </div>
 
                             </div>
-
-
 
                             <div class="form-group">
                                 <label for="endereco">Endereço</label>
@@ -72,8 +68,8 @@
                                 <span>{{ apiStatus }}</span>
                             </div>
 
-                            <form name="searchForm" novalidate
-                                  ng-submit="search()">
+                            <div class="form-group" name="searchForm" novalidate
+                                 ng-submit="search()">
                                 <div class="input-group">
                                     <input name="place" type="text" class="form-control"
                                            ng-model="searchPlace" required autofocus />
@@ -84,12 +80,12 @@
                                         </button>
                                     </span>
                                 </div>
-                            </form>
+                            </div>
 
                             <div id="map"></div>
 
-                            <form name="resForm" class="form-horizontal" novalidate
-                                  ng-submit="send()">
+                            <div name="resForm" class="form-horizontal form-group" novalidate
+                                 ng-submit="send()">
                                 <div class="form-group">
                                     <label for="resName" class="col-xs-2 control-label">Name</label>
                                     <div class="col-xs-10">
@@ -119,26 +115,26 @@
                                         </button>
                                     </div>
                                 </div>
-                            </form>
-
-                    
+                            </div>
 
 
 
-                    <div class="center-div col-sm-3">
-                        <button class="btn btn-primary" type="submit">Salvar</button>
-                        <a href="#" class="btn btn-primary">Voltar</a>
+
+
+                            <div class="center-div col-sm-3">
+                                <button class="btn btn-primary" type="submit">Salvar</button>
+                                <a href="#" class="btn btn-primary">Voltar</a>
+                            </div>
+
+
+
+                        </form>
+
+
+
+
+
                     </div>
-
-
-
-                    </form>
-
-
-
-
-
-                </div>
                 </div>
             </div>
         </div>

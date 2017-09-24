@@ -1,4 +1,4 @@
-﻿angular.module('meusServicos', [])
+﻿angular.module('meusServicos', ['ngResource'])
 
     // Reddit constructor function to encapsulate HTTP and pagination logic
     .factory('Reddit', function ($http) {
@@ -24,9 +24,9 @@
         };
 
         return Reddit;
-    });
+    })
 
-    encontreMe.service('Map', function ($q) {
+   .service('Map', function ($q) {
 
     this.init = function () {
         var options = {
