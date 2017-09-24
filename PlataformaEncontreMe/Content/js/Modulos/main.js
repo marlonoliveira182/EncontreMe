@@ -19,6 +19,12 @@
                 controller: 'cadastroController'
             });
 
+        $routeProvider
+            .when('/perfil', {
+                templateUrl: '/AngularTemplates/Perfil.html',
+                controller: 'cadastroDesaparecidoController'
+            });
+
         $routeProvider.otherwise({ redirectTo: '/index' });
     });
 

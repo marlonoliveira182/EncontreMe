@@ -1,10 +1,100 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
-<body>
+﻿<!--Chave API Google Maps: AIzaSyAHMgbkEvkhYWP0AQUuxpwXlP4y7PGB5oM -->
 
-</body>
-</html>
+<div class="container" ng-controller="cadastroDesaparecidoController" style="margin-right: 0px !important; padding-right: 0px !important; padding-left: 180.156px !important; padding-top: 8% !important;">
+    <div class="container">
+
+        <h2 class="page-title">Cadastrar Pessoa Desaparecida</h2>
+
+        <div class="row" ng-show="divCadastro">
+            <div class="col-md-12">
+                <section class="widget">
+                    <header>
+                        <h4 ng-if="!usu.CUSU_ID">Cadastrar Usuário</h4>
+                        <h4 ng-if="usu.CUSU_ID">Atualizar {{usu.CUSU_NOME}}</h4>
+                        <div class="widget-controls">
+                            <a href="" ng-click="FechaCadastro()">
+                                <i class="glyphicon glyphicon-remove"></i>
+                            </a>
+                        </div>
+                    </header>
+                    <div class="widget-body">
+                        <form novalidate role="form" id="formulario" name="formulario" ng-submit="salvar()">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div ng-init="InicializaFormulario(formulario)"></div>
+                                            <label for="nome">Nome</label>{{usu.CUSU_NOME}}
+                                            <input type="text" ng-model="usu.CUSU_NOME" name="nome" class="form-control" placeholder="Nome" maxlength="100" required />
+                                            <span ng-show="formulario.$submitted && formulario.nome.$error.required" class="form-control alert-danger">Nome obrigatório</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <label for="usuario">Usuário</label>
+                                            <input type="text" ng-model="usu.CUSU_USER" name="usuario" class="form-control" placeholder="Usuario" maxlength="30" required />
+                                            <span ng-show="formulario.$submitted && formulario.usuario.$error.required" class="form-control alert-danger">Usuário obrigatório</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <label for="senha">Senha</label>
+                                            <input type="password" ng-model="usu.CUSU_SENHA" name="senha" class="form-control" placeholder="Senha" maxlength="20" required />
+                                            <span ng-show="formulario.$submitted && formulario.senha.$error.required" class="form-control alert-danger">Senha obrigatória</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <label for="email">Email</label>
+                                            <input type="email" ng-model="usu.CUSU_EMAIL" name="email" class="form-control" placeholder="Email" maxlength="50" required />
+                                            <span ng-show="formulario.$submitted && formulario.email.$error.required" class="form-control alert-danger">Email obrigatório</span>
+                                            <span ng-show="formulario.$submitted && formulario.email.$error.email" class="form-control alert-danger">Formato de email incorreto</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 text-align-center">
+                                    <a ngf-select="uploadFiles($file, $invalidFiles)" ng-model="foto" accept="image/*" class="fc-event-draggable">
+                                        <span class="thumb-xlg">
+                                            <img class="img-responsive img-circle" ng-src="Upload\Usuarios\{{usu.CUSU_FOTO}}" ng-model="usu.CUSU_FOTO" ng-show="usu.CUSU_FOTO" />
+                                            <!--<img class="img-responsive img-circle" ng-src="Content\img\avatar.png" ng-model="usu.CUSU_FOTO" ng-show="!usu.CUSU_FOTO" />-->
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label for="processo">Processo</label>
+                                    <select class="form-control" ng-options="pro.CDPT_ID as pro.CDPT_DESCRI for pro in processo" ng-model="usu.CUSU_PROCESSO"></select>
+                                    <span ng-show="formulario.$submitted && formulario.processo.$error.required" class="form-control alert-danger">Processo obrigatório</span>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label for="sgq">Administrador do SGQ?</label>
+                                    <select class="form-control" ng-model="usu.CUSU_SGQ" name="sgq" required>
+                                        <option value="N">Não</option>
+                                        <option value="S">Sim</option>
+                                    </select>
+                                    <span ng-show="formulario.$submitted && formulario.sgq.$error.required" class="form-control alert-danger">Obrigatório</span>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label for="adm">Administrador do Sistema?</label>
+                                    <select class="form-control" ng-model="usu.CUSU_ADM" name="adm" required>
+                                        <option value="N">Não</option>
+                                        <option value="S">Sim</option>
+                                    </select>
+                                    <span ng-show="formulario.$submitted && formulario.adm.$error.required" class="form-control alert-danger">Obrigatório</span>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-offset-10 col-md-2">
+                                        <button type="submit" class="btn btn-primary" form="formulario">Salvar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+            </div>
+        </div>
