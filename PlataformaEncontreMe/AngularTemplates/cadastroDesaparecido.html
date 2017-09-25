@@ -1,7 +1,60 @@
 ﻿<!--Chave API Google Maps: AIzaSyAHMgbkEvkhYWP0AQUuxpwXlP4y7PGB5oM -->
 
 <div class="container" ng-controller="cadastroDesaparecidoController" style="margin-right: 0px !important; padding-right: 0px !important; padding-left: 180.156px !important; padding-top: 8% !important;">
-    <div class="container">
+
+    <div ng-show="!isCadastro" class="container">
+
+        <h2 class="page-title">Lista de Pessoas Desaparecidas</h2>
+
+
+        <!-- Nova Pessoa Desaparecida-->
+        <div class="row">
+            <div class="col">
+                <div class="panel panel-white">
+                    <div class="panel-body">
+                        <div class="col-xs-offset-11">
+                            <a ng-click="adicionarPessoa()" title="Adicionar" style="cursor:pointer">
+                                <i class="glyph-icon icon-plus"></i>
+                                <span>Adicionar</span>
+                            </a>
+                        </div>
+                        <br />
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Data de cadastro</th>
+                                    <th>Data da última atualização</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="pessoa in pessoasDesaparecidas">
+                                    <th>{{pessoa.nome}}</th>
+                                    <th>{{pessoa.dtCadastro}}</th>
+                                    <th>{{pessoa.dtUltimaAtualizacao}}</th>
+                                    <th>
+                                        <div>
+                                            <a ng-click="editarPessoa(pessoa)" title="Editar" style="cursor:pointer">
+                                                <i class="glyph-icon icon-pencil"></i>
+                                                <span>Editar</span>
+                                            </a>
+                                            <a ng-click="removerPessoa(pessoa)" title="Excluir" style="cursor:pointer">
+                                                <i class="glyph-icon icon-remove"></i>
+                                                <span>Excluir</span>
+                                            </a>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-show="isCadastro" class="container">
 
         <h2 class="page-title">Cadastrar Pessoa Desaparecida</h2>
 
@@ -11,67 +64,80 @@
             <div class="col">
                 <div class="panel panel-white">
                     <div class="panel-body">
-
-
-
-                        <form novalidate name="formPessoa" role="form" class="ng-pristine ng-valid">
-                            <div class="form-group col-sm-12">
-                                <label for="formPessoa">Nome</label>
-                                <input type="text" class="form-control" name="refNome" placeholder="Nome" maxlength="100" required autofocus />
-                            </div>
-                            <div class="form-group col-sm-5">
-                                <label for="rg">RG</label>
-                                <input type="text" class="form-control" name="rg" ng-model= "rg1"mask="99.999.999-9" placeholder="RG" maxlength="11" required />
-                            </div>
-                            <div class="form-group col-sm-5">
-                                <label for="cpf">CPF</label>
-                                <input type="text" class="form-control" nome="cpf"ng-model="cpf1" mask="999.999.999-99" placeholder="CPF" maxlength="14" required />
-                            </div>
-                            <div class="form-group col-sm-2">
-                                <label class="control-label">Sexo</label>
-                                <div class="form-group">
-                                    <div class="selectContainer">
-                                        <select class="form-control" name="sexo">
-                                            <option value="">Escolha a opção</option>
-                                            <option value="m">Masculino</option>
-                                            <option value="f">Feminino</option>
-                                        </select>
-                                    </div>
+                        <form novalidate name="formPessoa" role="form" ng-submit="salvarPessoa()">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div ng-init="InicializaFormulario(formPessoa)"></div>
+                                    <label>Nome</label>
+                                    <input type="text" class="form-control" name="nome" placeholder="Nome" maxlength="100" required autofocus ng-model="pessoa.nome" />
+                                    <span class="form-control alert-danger" ng-show="formPessoa.$submitted && formPessoa.nome.$error.required">Campo <strong>nome</strong> é obrigatório</span>
                                 </div>
-
                             </div>
-
-                            <div class="form-group col-sm-6">
-                                <label for="endereco">Endereço</label>
-                                <input type="text" class="form-control" nome="endereco" placeholder="Endereço" maxlength="100" required />
+                            <br />
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <label>RG</label>
+                                    <input type="text" class="form-control" name="rg" placeholder="RG" maxlength="11" required ng-model="pessoa.rg" />
+                                    <span class="form-control alert-danger" ng-show="formPessoa.$submitted && formPessoa.rg.$error.required">Campo <strong>RG</strong> é obrigatório</span>
+                                </div>
+                                <div class="col-xs-5">
+                                    <label>CPF</label>
+                                    <input type="text" class="form-control" name="cpf" placeholder="CPF" maxlength="14" required ng-model="pessoa.cpf" />
+                                    <span class="form-control alert-danger" ng-show="formPessoa.$submitted && formPessoa.cpf.$error.required">Campo <strong>CPF</strong> é obrigatório</span>
+                                </div>
+                                <div class="col-xs-2">
+                                    <label class="control-label">Sexo</label>
+                                    <select class="form-control" name="sexo" ng-model="pessoa.sexo" required>
+                                        <option value="" disabled>Escolha a opção</option>
+                                        <option value="M">Masculino</option>
+                                        <option value="F">Feminino</option>
+                                    </select>
+                                    <span class="form-control alert-danger" ng-show="formPessoa.$submitted && formPessoa.sexo.$error.required">Campo <strong>sexo</strong> é obrigatório</span>
+                                </div>
                             </div>
-
-                            <div class="form-group col-sm-2">
-                                <label for="numero">Número</label>
-                                <input type="text" class="form-control" nome="numero" placeholder="Número" maxlength="5" required />
+                            <br />
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <label>Endereço</label>
+                                    <input type="text" class="form-control" name="endereco" placeholder="Endereço" maxlength="100" required ng-model="pessoa.endereco" />
+                                    <span class="form-control alert-danger" ng-show="formPessoa.$submitted && formPessoa.endereco.$error.required">Campo <strong>endereço</strong> é obrigatório</span>
+                                </div>
+                                <div class="col-xs-2">
+                                    <label>Número</label>
+                                    <input type="text" class="form-control" name="numero" placeholder="Número" maxlength="5" required ng-model="pessoa.numero" />
+                                    <span class="form-control alert-danger" ng-show="formPessoa.$submitted && formPessoa.numero.$error.required">Campo <strong>número</strong> é obrigatório</span>
+                                </div>
+                                <div class="col-xs-4">
+                                    <label>Complemento</label>
+                                    <input type="text" class="form-control" name="complemento" placeholder="Complemento" maxlength="15" required ng-model="pessoa.complemento" />
+                                    <span class="form-control alert-danger" ng-show="formPessoa.$submitted && formPessoa.complemento.$error.required">Campo <strong>complemento</strong> é obrigatório</span>
+                                </div>
                             </div>
-
-                            <div class="form-group col-sm-4">
-                                <label for="complemento">Complemento</label>
-                                <input type="text" class="form-control" nome="complemento" placeholder="Complemento" maxlength="15" required />
+                            <br />
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <label>Local onde a pessoa foi vista pela última vez</label>
+                                </div>
                             </div>
-
-                            <div class="form-group">
-                                <label for="complemento">Local onde a pessoa foi vista pela última vez</label>
+                            <br />
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <input id="pac-input" class="controls form-group" type="text" placeholder="Pesquisar">
+                                </div>
                             </div>
-
-
-
-                            <input id="pac-input" class="controls form-group col-sm-6" type="text" placeholder="Pesquisar">
-                            <div id="map" class="form-control" style="overflow: visible !important; margin:0; padding:0; height:500px;"></div>
-
-                            <div class="form-group col-sm-12"></div>
-                            <div class="center-div col-sm-3">
-                                <button class="btn btn-primary" type="submit">Salvar</button>
-                                <a href="#" class="btn btn-primary">Voltar</a>
+                            <br />
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div id="map" class="form-control" style="overflow: visible !important; margin:0; padding:0; height:500px;"></div>
+                                </div>
                             </div>
-
-
+                            <br />
+                            <div class="row">
+                                <div class="center-div col-sm-3">
+                                    <button type="submit" class="btn btn-primary">Salvar</button>
+                                    <a ng-click="isCadastro = !isCadastro" class="btn btn-primary">Voltar</a>
+                                </div>
+                            </div>
                         </form>
 
                         <script src="https://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyC3-G4GK4Y27lZzK4lzsWTZM7swOnByEMM&libraries=places&callback=initMap" async defer></script>
@@ -167,8 +233,5 @@
                 </div>
             </div>
         </div>
-
-
-
     </div>
 </div>

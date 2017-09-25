@@ -5414,9 +5414,9 @@ a.thumbnail.active, a.thumbnail:focus, a.thumbnail:hover {
     }
 
 .alert-danger {
-    color: #a94442;
-    background-color: #f2dede;
-    border-color: #ebccd1
+    color: #a94442 !important;
+    background-color: #f2dede !important;
+    border-color: #ebccd1 !important;
 }
 
     .alert-danger hr {
@@ -16676,11 +16676,11 @@ a.list-group-item.active, a.list-group-item.active:focus, a.list-group-item.acti
     padding: 10px;
     text-align: left;
     border-width: 0;
-    border-style: solid
+    border-style: solid;
 }
 
 .alert-close {
-    padding-right: 36px
+    padding-right: 36px;
 }
 
 .alert a {
@@ -29276,6 +29276,10 @@ body .popover.left .arrow:after {
 .bootstrap-switch .bootstrap-switch-handle-off {
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px
+}
+
+.ng-submitted .ng-invalid{
+    border-color: #a94442;
 }
 
 @media (max-width:1050px) {
