@@ -29419,12 +29419,12 @@ body .popover.left .arrow:after {
     }
 }
 
-@media only screen and (max-width:835px) {
+@media only screen and (max-width:898px) {
     .fixed-sidebar #page-header {
         padding-left: 2px;
     }
 
-    admin-all-demo.css:28653 .fixed-header #page-header {
+    .fixed-header #page-header {
         position: fixed;
         width: 100%;
         top: 0;

@@ -3,7 +3,7 @@
     <div class="container" ng-controller="indexController" infinite-scroll="reddit.nextPage()" infinite-scroll-disabled="reddit.busy" infinite-scroll-distance="0.5">
 
         <!--<div ng-repeat="item in reddit.items">
-            <span class="score">{{item.score}}</span>
+            <span class="score">{{item.nome}}</span>
             <span class="title">
                 <a ng-href="{{item.url}}">{{item.title}}</a>
             </span>
@@ -12,45 +12,31 @@
                 <a ng-href="http://reddit.com{{item.permalink}}">{{item.num_comments}} comments</a>
             </small>
             <div style="clear: both;"></div>
+
         </div>
         <div ng-show="reddit.busy">Loading data...</div>-->
 
         <div class="col-sm-2"></div>
         <div class="col-sm-4">
-            <div class="panel panel-white" style="height: 740px !important; width:585px !important;">
-                <div class="user-account-img dropdown">
+            <div class="panel panel-white" ng-repeat="pessoa in pessoasDesaparecidas" style="height: auto !important; width:585px !important;">
+                <div class="user-account-img dropdown" ng-repeat="usu in usuario">
                     <img name="img" width="50" src="../img/retrato.jpg" alt="Profile image">
-                    <label for="img" style="padding-top: 19% !important;padding-left: 5px;">Caio Pires Silva</label>
+                    <label for="img" style="padding-top: 19% !important;padding-left: 5px;">{{usu.nome}}</label>
                 </div>
                 <img class="center-block img-post" src="../img/Evaldo_Raksa.jpg" />
                 <form style="padding-left: 15px; padding-bottom: 10px; padding-top: 10px;">
-                    <label name="tbxNome">Nome:</label><label for="tbxNome"> Evaldo Raksa</label><br />
+                    <label name="tbxNome">Nome:</label><label for="tbxNome"> {{pessoa.nome}}</label><br />
+                    <label name="tbxNome">Sexo:</label><label for="tbxNome"> {{pessoa.sexo}}</label><br />
                     <label name="tbxIdade">Idade:</label><label for="tbxIdade"> 47 Anos</label><br />
-                    <label name="tbxUltimo">Ultima Vez Visto em:</label><label for="tbxUltimo"> 10 de Outubro de 2010</label><br />
-                    <label name="tbxLocal">Local:</label><label for="tbxLocal"> Município - Campo Largo - PR</label><br />
+                    <label name="tbxUltimo">Ultima Vez Visto em:</label><label for="tbxUltimo"> {{pessoa.dtUltimaAtualizacao}}</label><br />
+                    <label name="tbxLocal">Local:</label><label for="tbxLocal"> {{pessoa.endereco}}</label><br />
                     <label for="resumo">Informações do Desaparecimento:</label>
                     <label name="resumo">
-                        Hospital Nossa Senhora do Rocio de Campo Largo. Ele foi diagnosticado com traumatismo craniano e permaneceu um dia internado. No dia seguinte a família foi informada que ele recebeu alta. Em seguida foram informados que ele  sumiu.
+                        {{pessoa.resumo}}
                     </label>
                 </form>
             </div>
-            <div class="panel panel-white" style="height: auto !important; width:585px !important;">
-                <div class="user-account-img dropdown">
-                    <img name="img" width="50" src="../img/retrato.jpg" alt="Profile image">
-                    <label for="img" style="padding-top: 19% !important;padding-left: 5px;">Caio Pires Silva</label>
-                </div>
-                <img class="center-block img-post" src="../img/Bruno.jpg" />
-                <form style="padding-left: 15px; padding-bottom: 10px; padding-top: 10px;">
-                    <label name="tbxNome">Nome:</label><label for="tbxNome"> &nbsp; Bruno Santos Magalhães</label><br />
-                    <label name="tbxIdade">Idade:</label><label for="tbxIdade">&nbsp; 32 Anos</label><br />
-                    <label name="tbxUltimo">Ultima Vez Visto em:</label><label for="tbxUltimo">&nbsp; 10 de Setembro de 2017</label><br />
-                    <label name="tbxLocal">Local:</label><label for="tbxLocal">&nbsp; Município - Saquarema - RJ</label><br />
-                    <label for="resumo">Informações do Desaparecimento:</label>
-                    <label name="resumo">
-                        Bruno foi passar o feriado de 7 de setembro na cidade de Saquarema na Região dos Lagos do Rio de Janeiro e na madrugada do dia 10 desapareceu. Seu celular foi encontrado próximo a igreja de nossa senhora mas não temos informações sobre seu paradeiro. A polícia também faz buscas pela região. Por favor quem souber de qualquer informação do paradeiro do Bruno "Pig" entre em contato com os números (21) 99320-6505 ou (22) 2653-2278.
-                    </label>
-                </form>
-            </div>
+
         </div>
 
         <div class="col-sm-6"></div>
