@@ -1,52 +1,7 @@
-﻿angular.module('encontreMe').controller('cadastroDesaparecidoController', function ($scope, Map) {
+﻿angular.module('encontreMe').controller('cadastroDesaparecidoController', function ($scope, $resource, Upload, recursoListaDesaparecido, ngNotify, Map) {
 
     $scope.place = {};
-    $scope.pessoasDesaparecidas = [
-        {
-            nome: 'Lucas Fonseca',
-            dtCadastro: '25/09/2017',
-            dtUltimaAtualizacao: '25/09/2017',
-            rg: '448597845',
-            cpf: '42456985475',
-            sexo: 'M',
-            endereco: 'Endereço teste',
-            numero: '444',
-            complemento: 'casa'
-        },
-        {
-            nome: 'Caio Pires',
-            dtCadastro: '25/09/2017',
-            dtUltimaAtualizacao: '25/09/2017',
-            rg: '556894587',
-            cpf: '56936585963',
-            sexo: 'M',
-            endereco: 'Endereço teste',
-            numero: '444',
-            complemento: 'casa'
-        },
-        {
-            nome: 'Maria das Dores',
-            dtCadastro: '25/09/2017',
-            dtUltimaAtualizacao: '25/09/2017',
-            rg: '475216935',
-            cpf: '85478523696',
-            sexo: 'F',
-            endereco: 'Endereço teste',
-            numero: '444',
-            complemento: 'casa'
-        },
-        {
-            nome: 'John McAfee',
-            dtCadastro: '25/09/2017',
-            dtUltimaAtualizacao: '25/09/2017',
-            rg: '448597845',
-            cpf: '42456985475',
-            sexo: 'M',
-            endereco: 'Endereço teste',
-            numero: '444',
-            complemento: 'casa'
-        }
-    ];
+    $scope.pessoasDesaparecidas = [];
     $scope.pessoa = {};
     $scope.isCadastro = false;
     $scope.meuForm = '';
@@ -101,9 +56,68 @@
         
     }
 
+    $scope.buscarTodos = function () {
+
+        //var divLoad = loading.carregarDados();
+
+        recursoListaDesaparecido.query(function (cad) {
+            $scope.pessoasDesaparecidas = cad;
+            //divLoad.finish();
+        }, function (erro) {
+            //divLoad.finish();
+            ngNotify.set('Não foi possivel buscar todos as pessoas', 'error');
+        });
+    };
+    $scope.buscarTodos();
+
+    //Upload
+    $scope.upload = function (file) {
+
+        $scope.pessoa.BO_DESAPARECIDO = file.name;
+
+        Upload.upload({
+            url: 'Upload/UploadPDF.ashx',
+            data: { file: file }
+        }).then(function (resp) {
+        }, function (resp) {
+        }, function (evt) {
+        });
+    };
+
+
+    $scope.uploadFiles = function (file, errFiles) {
+        $scope.f = file;
+        $scope.errFile = errFiles && errFiles[0];
+    }
+
     $scope.salvarPessoa = function () {
-        if ($scope.meuForm.$valid) {
-            alert('falta implementar back end')
+
+        $scope.f ? $scope.upload($scope.f) : '';
+
+        if ($scope.pessoa.COD_DESAPARECIDO) {
+            console.log($scope.pessoa);
+            recursoListaDesaparecido.atualizar({ desaparecidoId: $scope.pessoa.COD_DESAPARECIDO }, $scope.pessoa, function (retorno) {
+                //divLoad.finish();
+                ngNotify.set('Cadastro atualizado com sucesso', 'info');
+                $scope.buscarTodos();
+            }, function (erro) {
+                //divLoad.finish();
+                ngNotify.set('Não foi possivel atualizar o registro', 'error');
+                $scope.buscarTodos();
+            });
+        }
+        else {
+            recursoListaDesaparecido.salvar($scope.pessoa, function (retorno) {
+                //divLoad.finish();
+                ngNotify.set('Pessoa cadastrada com sucesso', 'info');
+                $scope.buscarTodos();
+            }, function (erro) {
+                //divLoad.finish();
+                ngNotify.set('Não foi possivel cadastrar a pessoa', 'error');
+                $scope.resetForm();
+                $scope.buscarTodos();
+            });
         }
     }
 });
+

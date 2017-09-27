@@ -21,8 +21,8 @@ body {
 }
 
 .img-post {
-    height: 480px !important;
-    width: 400px !important;
+    height: auto !important;
+    width: auto !important;
     padding-top: 20px;
     border-radius: 13px;
 }

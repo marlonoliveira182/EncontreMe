@@ -1,4 +1,4 @@
-﻿angular.module('encontreMe', ['ngRoute', 'ngAnimate', 'infinite-scroll', 'meusServicos', 'ngMask','ngResource'])
+﻿angular.module('encontreMe', ['ngRoute', 'ngAnimate', 'infinite-scroll', 'meusServicos', 'ngMask', 'ngResource', 'ngNotify', 'ngFileUpload'])
 
     .config(function ($routeProvider) {
         $routeProvider
