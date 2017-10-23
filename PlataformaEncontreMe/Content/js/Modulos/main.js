@@ -8,7 +8,7 @@
             });
 
         $routeProvider
-            .when('/cadastroDesaparecido', {
+            .when('/cadastroDesaparecido/:id?', {
                 templateUrl: '/AngularTemplates/cadastroDesaparecido.html',
                 controller: 'cadastroDesaparecidoController'
             });

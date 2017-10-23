@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using PlataformaEncontreMe.Models;
+using PlataformaEncontreMe.ViewModel;
+using PlataformaEncontreMe.ViewModel.Map;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using PlataformaEncontreMe.Models;
 
 namespace PlataformaEncontreMe.Controllers
 {
@@ -23,7 +21,7 @@ namespace PlataformaEncontreMe.Controllers
         }
 
         // GET: api/DESAPARECIDO/5
-        [ResponseType(typeof(DESAPARECIDO))]
+        [ResponseType(typeof(DESAPARECIDOViewModel))]
         public IHttpActionResult Get(int id)
         {
             DESAPARECIDO dESAPARECIDO = db.DESAPARECIDO.Find(id);
@@ -32,12 +30,12 @@ namespace PlataformaEncontreMe.Controllers
                 return NotFound();
             }
 
-            return Ok(dESAPARECIDO);
+            return Ok(dESAPARECIDO.MapFromDb());
         }
 
         // PUT: api/DESAPARECIDO/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult Put(int id, DESAPARECIDO dESAPARECIDO)
+        [ResponseType(typeof(DESAPARECIDOViewModel))]
+        public IHttpActionResult Put(int id, DESAPARECIDOViewModel dESAPARECIDO)
         {
             if (!ModelState.IsValid)
             {
@@ -49,7 +47,11 @@ namespace PlataformaEncontreMe.Controllers
                 return BadRequest();
             }
 
-            db.Entry(dESAPARECIDO).State = EntityState.Modified;
+            DESAPARECIDO desFromDb = db.DESAPARECIDO.Find(id);
+
+            dESAPARECIDO.MaptoDb(desFromDb);
+
+            db.Entry(desFromDb).State = EntityState.Modified;
 
             try
             {
@@ -72,21 +74,20 @@ namespace PlataformaEncontreMe.Controllers
 
         // POST: api/DESAPARECIDO
         [ResponseType(typeof(DESAPARECIDO))]
-        public IHttpActionResult Post([FromBody] DESAPARECIDO dESAPARECIDO)
+        public IHttpActionResult Post([FromBody] DESAPARECIDOViewModel dESAPARECIDO)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            db.DESAPARECIDO.Add(dESAPARECIDO);
+            db.DESAPARECIDO.Add(dESAPARECIDO.Map());
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = dESAPARECIDO.COD_DESAPARECIDO }, dESAPARECIDO);
         }
 
         // DELETE: api/DESAPARECIDO/5
-        [ResponseType(typeof(DESAPARECIDO))]
+        [ResponseType(typeof(DESAPARECIDOViewModel))]
         public IHttpActionResult Delete(int id)
         {
             DESAPARECIDO dESAPARECIDO = db.DESAPARECIDO.Find(id);
@@ -114,5 +115,6 @@ namespace PlataformaEncontreMe.Controllers
         {
             return db.DESAPARECIDO.Count(e => e.COD_DESAPARECIDO == id) > 0;
         }
+
     }
 }

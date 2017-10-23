@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Web;
 
 namespace PlataformaEncontreMe.Upload
@@ -19,7 +17,6 @@ namespace PlataformaEncontreMe.Upload
         {
             try
             {
-
 
                 if (context.Request.Files.Count > 0)
                 {
