@@ -26,5 +26,7 @@ namespace PlataformaEncontreMe.Models
         }
     
         public virtual DbSet<DESAPARECIDO> DESAPARECIDO { get; set; }
+        public virtual DbSet<LOCALIZACAO> LOCALIZACAO { get; set; }
+        public virtual DbSet<USUARIO> USUARIO { get; set; }
     }
 }

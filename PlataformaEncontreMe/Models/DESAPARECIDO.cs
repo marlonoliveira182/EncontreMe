@@ -14,6 +14,12 @@ namespace PlataformaEncontreMe.Models
     
     public partial class DESAPARECIDO
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public DESAPARECIDO()
+        {
+            this.LOCALIZACAO = new HashSet<LOCALIZACAO>();
+        }
+    
         public int COD_DESAPARECIDO { get; set; }
         public string NOME_DESAPARECIDO { get; set; }
         public string RG_DESAPARECIDO { get; set; }
@@ -22,7 +28,11 @@ namespace PlataformaEncontreMe.Models
         public Nullable<System.TimeSpan> HORARIO_DESAPARECIDO { get; set; }
         public System.DateTime DATA_DESAPARECIDO { get; set; }
         public string CARACTERISTICAS_DESAPARECIDO { get; set; }
-        public byte[] FOTO_DESAPARECIDO { get; set; }
+        public string FOTO_DESAPARECIDO { get; set; }
         public Nullable<int> COD_USUARIO { get; set; }
+    
+        public virtual USUARIO USUARIO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LOCALIZACAO> LOCALIZACAO { get; set; }
     }
 }

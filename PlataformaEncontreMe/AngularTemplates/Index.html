@@ -1,41 +1,27 @@
 ﻿<div class="container" style="padding-top:6%">
 
     <div class="container" ng-controller="indexController" infinite-scroll="reddit.nextPage()" infinite-scroll-disabled="reddit.busy" infinite-scroll-distance="0.5">
-
-        <!--<div ng-repeat="item in reddit.items">
-            <span class="score">{{item.nome}}</span>
-            <span class="title">
-                <a ng-href="{{item.url}}">{{item.title}}</a>
-            </span>
-            <small>
-                by {{item.author}} -
-                <a ng-href="http://reddit.com{{item.permalink}}">{{item.num_comments}} comments</a>
-            </small>
-            <div style="clear: both;"></div>
-
-        </div>
-        <div ng-show="reddit.busy">Loading data...</div>-->
-
         <div class="col-sm-2"></div>
         <div class="col-sm-4">
+
             <div class="panel panel-white" ng-repeat="pessoa in pessoasDesaparecidas" style="height: auto !important; width:585px !important;">
-                <div class="user-account-img dropdown" ng-repeat="usu in usuario">
-                    <img name="img" width="50" src="../img/retrato.jpg" alt="Profile image">
-                    <label for="img" style="padding-top: 19% !important;padding-left: 5px;">{{usu.nome}}</label>
-                </div>
-                <img class="center-block img-post" src="../img/Evaldo_Raksa.jpg" />
-                <form style="padding-left: 15px; padding-bottom: 10px; padding-top: 10px;">
-                    <label name="tbxNome">Nome:</label><label for="tbxNome"> {{pessoa.nome}}</label><br />
-                    <label name="tbxNome">Sexo:</label><label for="tbxNome"> {{pessoa.sexo}}</label><br />
-                    <label name="tbxIdade">Idade:</label><label for="tbxIdade"> 47 Anos</label><br />
-                    <label name="tbxUltimo">Ultima Vez Visto em:</label><label for="tbxUltimo"> {{pessoa.dtUltimaAtualizacao}}</label><br />
-                    <label name="tbxLocal">Local:</label><label for="tbxLocal"> {{pessoa.endereco}}</label><br />
-                    <label for="resumo">Informações do Desaparecimento:</label>
-                    <label name="resumo">
-                        {{pessoa.resumo}}
-                    </label>
-                </form>
+                <a ng-href="#/cadastroDesaparecido/{{pessoa.COD_DESAPARECIDO}}">
+                    <div class="user-account-img dropdown" ng-repeat="usu in usuario">
+                        <img name="img" width="50" src="../img/retrato.jpg" alt="Profile image">
+                        <label for="img" style="padding-top: 19% !important;padding-left: 5px;">{{usu.nome}}</label>
+                    </div>
+                    <img class="center-block img-post" style="width:240px!important;height:320px!important" ng-src="{{pessoa.FOTO_DESAPARECIDO}}" />
+                    <form style="padding-left: 15px; padding-bottom: 10px; padding-top: 10px;">
+                        <label name="tbxNome">Nome:</label><label for="tbxNome"> {{pessoa.NOME_DESAPARECIDO}}</label><br />
+                        <label name="tbxUltimo">Ultima Vez Visto em:</label><label for="tbxUltimo"> {{pessoa.DATA_DESAPARECIDO | date : "dd/MM/yyyy"}}</label><br />
+                        <label for="resumo">Informações do Desaparecimento:</label>
+                        <label name="resumo">
+                            {{pessoa.resumo}}
+                        </label>
+                    </form>
+                </a>
             </div>
+
 
         </div>
 

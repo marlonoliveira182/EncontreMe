@@ -1,5 +1,4 @@
 ﻿angular.module('meusServicos', ['ngResource'])
-
     .factory('recursoListaDesaparecido', function ($resource) {
         return $resource('api/DESAPARECIDO/:desaparecidoId', null, {
             salvar: {
@@ -17,39 +16,63 @@
         })
     })
     .service('Map', function ($q) {
-
-    this.init = function () {
-        var options = {
-            center: new google.maps.LatLng(-23.223701,-45.900907),
-            zoom: 10,
-            disableDefaultUI: false
-        }
-        this.map = new google.maps.Map(
-            document.getElementById("map"), options
-        );
-        this.places = new google.maps.places.PlacesService(this.map);
-    }
-
-    this.search = function (str) {
-        var d = $q.defer();
-        this.places.textSearch({ query: str }, function (results, status) {
-            if (status == 'OK') {
-                d.resolve(results[0]);
+        var map = null;
+        this.init = function (mapMarkerCallBack) {
+            var options = {
+                center: new google.maps.LatLng(-23.5486, -46.6392),
+                zoom: 10,
+                mapTypeId: 'roadmap',
+                disableDefaultUI: false
             }
-            else d.reject(status);
-        });
-        return d.promise;
-    }
+            map = new google.maps.Map(
+                document.getElementById("map"), options
+            );
 
-    this.addMarker = function (res) {
-        if (this.marker) this.marker.setMap(null);
-        this.marker = new google.maps.Marker({
-            map: this.map,
-            position: res.geometry.location,
-            animation: google.maps.Animation.DROP
-        });
-        this.map.setCenter(res.geometry.location);
-    }
+            this.places = new google.maps.places.PlacesService(map);
+            searchBox = new google.maps.places.SearchBox(document.getElementById('pac-input'));
 
-});
+            map.addListener('bounds_changed', function () {
+                searchBox.setBounds(map.getBounds());
+            });
+
+            searchBox.addListener('places_changed', function () {
+                var places = searchBox.getPlaces();
+
+                if (places.length == 0) {
+                    return;
+                }
+
+                var bounds = new google.maps.LatLngBounds();
+                places.forEach(function (place) {
+                    if (!place.geometry) {
+                        console.log("Returned place contains no geometry");
+                        return;
+                    }
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: place.geometry.location
+                    });
+
+                    mapMarkerCallBack(place.geometry.location.lat(), place.geometry.location.lng());
+
+                    if (place.geometry.viewport) {
+                        bounds.union(place.geometry.viewport);
+                    } else {
+                        bounds.extend(place.geometry.location);
+                    }
+                });
+                map.fitBounds(bounds);
+            });
+        }
+        this.addMarker = function (lat, lgn) {
+            var marker = new google.maps.Marker({
+                map: map,
+                position: { lat: parseFloat(lat), lng: parseFloat(lgn) }
+            });
+        }
+    }).service('CompararImagem', function ($http) {
+        this.compararImg = function (img, id) {
+            return $http.post("/desaparecido/compararimagem", { Id: id, ImgBody: img });
+        }
+    });
 
